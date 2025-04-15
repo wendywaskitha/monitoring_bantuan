@@ -42,6 +42,9 @@
                         <i class="bi bi-check-circle-fill me-2"></i> {{ session('success') }}
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
+                    <div class="alert alert-info" role="alert">
+                        <i class="bi bi-info-circle-fill me-2"></i> Anda dapat memeriksa status pendaftaran kelompok Anda kapan saja melalui <a href="{{ route('pendaftaran.kelompok.check-status') }}">halaman cek status</a> dengan menggunakan nomor telepon atau email yang terdaftar.
+                    </div>
                 @endif
                 @if (session('error'))
                     <div class="alert alert-danger alert-dismissible fade show" role="alert">

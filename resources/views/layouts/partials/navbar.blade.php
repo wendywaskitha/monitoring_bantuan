@@ -30,6 +30,11 @@
                        <i class="bi bi-person-plus-fill me-1"></i> <span class="d-none d-lg-inline">Daftar Baru</span><span class="d-lg-none">Daftar Kelompok Baru</span>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link small px-lg-2 {{ request()->routeIs('pendaftaran.kelompok.check-status') ? 'active' : '' }}" href="{{ route('pendaftaran.kelompok.check-status') }}">
+                       <i class="bi bi-search me-1"></i> <span class="d-none d-lg-inline">Cek Status</span><span class="d-lg-none">Cek Status Pendaftaran</span>
+                    </a>
+                </li>
                  @auth
                     @if(Auth::user()->hasRole('Admin'))
                         <li class="nav-item">

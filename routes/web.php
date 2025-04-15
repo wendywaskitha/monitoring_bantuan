@@ -52,6 +52,11 @@ Route::get('/daftar-kelompok', [PendaftaranKelompokController::class, 'create'])
 Route::post('/daftar-kelompok/kirim', [PendaftaranKelompokController::class, 'store'])->name('pendaftaran.kelompok.store');
 // ---------------------------------------
 
+// --- Route untuk Cek Status Pendaftaran ---
+Route::get('/cek-status-pendaftaran', [PendaftaranKelompokController::class, 'checkStatus'])->name('pendaftaran.kelompok.check-status');
+Route::post('/cek-status-pendaftaran', [PendaftaranKelompokController::class, 'showStatus'])->name('pendaftaran.kelompok.show-status');
+// ---------------------------------------
+
 Route::post('/kontak/kirim', [ContactController::class, 'store'])->name('contact.store');
 
 Route::post('/kemitraan/kirim', [KemitraanController::class, 'store'])->name('kemitraan.store');

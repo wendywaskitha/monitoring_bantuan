@@ -144,4 +144,50 @@ class PendaftaranKelompokController extends Controller
         return response()->json($desas);
     }
     */
+
+    /**
+     * Menampilkan halaman untuk pengecekan status pendaftaran kelompok
+     *
+     * @return \Illuminate\View\View
+     */
+    public function checkStatus()
+    {
+        return view('public.cek-status-pendaftaran');
+    }
+
+    /**
+     * Mencari dan menampilkan status pendaftaran kelompok berdasarkan email atau telepon
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\View\View
+     */
+    public function showStatus(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'identifier' => 'required|string',
+            'type' => 'required|in:telepon,email',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->route('pendaftaran.kelompok.check-status')
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        $type = $request->input('type');
+        $identifier = $request->input('identifier');
+
+        // Cari pendaftaran berdasarkan telepon atau email
+        $query = PendaftaranKelompok::query();
+        
+        if ($type === 'telepon') {
+            $query->where('telepon_kontak', $identifier);
+        } else {
+            $query->where('email_kontak', $identifier);
+        }
+
+        $pendaftarans = $query->latest()->get();
+
+        return view('public.hasil-cek-status', compact('pendaftarans', 'type', 'identifier'));
+    }
 }

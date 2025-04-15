@@ -53,6 +53,8 @@ class KemitraanController extends Controller
                 'jenis_kelompok' => $request->kelompok?->jenis_kelompok, // Ambil jenis kelompok
                 'alamat_singkat' => null, // Alamat tidak diperlukan di modal ini
                 'perkiraan_jumlah_anggota' => null, // Jumlah anggota tidak diperlukan
+                'kelompok_id' => $request->input('kelompok_id'), // ID kelompok terkait
+                'jenis_kelompok' => optional($request->kelompok)->jenis_kelompok, // Jenis kelompok (opsional)
                 'created_at' => now(),
                 'updated_at' => now(),
             ]);
